@@ -3,6 +3,7 @@
 \usepackage{amsmath} 
 \usepackage{enumitem}
 \usepackage{braket}
+\usepackage{graphicx}
 
 \title{Chapter 1 Problems}
 \author{William Arnold}
@@ -95,4 +96,66 @@ For the distribution of ages in the example in Section 1.3.1
       \end{align*}
   \end{enumerate}
 
+
+\section{Problem 1.5}
+  Consider the Gaussian wave function
+  \[ \Psi(x, t) = Ae^{-\lambda |x|}e^{-i\omega t} \]
+  Where $A, \omega,$ and $\lambda$ are real coefficients.
+
+  \begin{enumerate}[label=(\alph*)]
+    \item Normalize $\Psi$
+
+      Firstly, $|\Psi| = |Ae^{-\lambda|x|}|$ since $|e^{i\omega t}| = |cos(\omega t) + i sin(\omega t)| = 1$.
+      Thus $|\Psi|^2 = A^2 e^{-2\lambda|x|}$ so
+      \begin{align*}
+        \intinf |\Psi|^2 dx &= \intinf A^2 e^{-2\lambda |x|} dx \\
+                            &= 2A^2 \intzinf e^{-2 \lambda x} dx \\
+                            &= 2A^2 \frac{1}{-2\lambda} \intzinf e^{-2 \lambda x} (-2 \lambda) dx \\
+                            &= 2A^2 \frac{1}{-2\lambda} \int_{0}^{-\infty} e^{u}du \\
+                            &= \frac{2A^2}{-2 \lambda} [e^u]_0^{-\infty} \\
+                            &= \frac{A^2}{-\lambda} (0 - 1) = \frac{A^2}{\lambda} = 1
+      \end{align*}
+      Thus, we have that $A = \sqrt{\lambda}$ and $\Psi$ is normalized.
+
+    \item Determine $\braket{x}$ and $\braket{x^2}$
+      \begin{align*}
+        \braket{x} = \intinf x|\Psi|^2 dx &= \intinf \frac{x}{\lambda} e^{-2\lambda|x|}dx \\
+                             &= \frac1\lambda \intinf x e^{-2 \lambda |x|} dx \\
+                             &= 0 
+      \end{align*}
+      The last step follows from integrating an odd function symmetrically around 0. Now to find $\braket{x}^2$:
+      \begin{align*}
+        \braket{x}^2 = \intinf x^2|\Psi|^2 dx &= \frac1\lambda \intinf x^2 e^{-2\lambda|x|}dx \\
+                                              &= \frac2\lambda \intzinf x^2 e^{-2\lambda x} dx \\
+                                              &= \frac2\lambda 2 (\frac1{2\lambda})^3 \\
+                                              &= \frac1{2\lambda ^4} 
+      \end{align*}
+
+    \item Find the standard deviation of $x$. 
+      Sketch the graph of $|\Psi|^2$, as a function of $x$, and mark the points $(\braket{x} + \sigma)$ and $(\braket{x} - \sigma)$, to illustrate the sense in which $\sigma$ represents the "spread" in x.
+      What is the probability that the particle would be found outside this range?
+
+      Firstly, $\sigma^2 = \frac1{2\lambda^4}$ so $\sigma = \frac1{\sqrt{2\lambda}}$. Looking at a graph of $|\Psi|^2$ for $\lambda = 1$ marked at $x=\sqrt{\frac12}, -\sqrt{\frac12}$:
+
+      \centerline{\includegraphics[width=6in]{1-5c.png}}
+
+      The probability $x$ is greater than $\sqrt{\frac12}$ is
+      \[\int_{0.5}^\infty e^{-2x}dx = [-\frac12e^{-2x}]_{(1/\sqrt{2})}^{\infty} = \frac1{2e^{\sqrt2}} \approx 0.12156 \] 
+      And the same value is taken for the probability than $x$ is less than $\sqrt{\frac12}$ by symmetry.
+      Thus the probability that $x \notin [\braket{x} - \sigma, \braket{x} + \sigma]$ is $\frac1e^{\sqrt{2}} \approx 0.24312$.
+  \end{enumerate}
+
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
