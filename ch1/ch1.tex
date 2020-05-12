@@ -2,8 +2,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath} 
 \usepackage{enumitem}
-\usepackage{braket}
 \usepackage{graphicx}
+\usepackage{mathtools}
+\newcommand{\ddt}[1]{\frac{\partial #1}{\partial t}}
+\newcommand{\dddt}[1]{\frac{\partial^2 #1}{\partial t^2}}
+\newcommand{\ddx}[1]{\frac{\partial #1}{\partial x}}
+\newcommand{\dddx}[1]{\frac{\partial^2 #1}{\partial x^2}}
+\newcommand{\bracket}[1]{\left[ #1 \right]}
+\newcommand{\paren}[1]{\left( #1 \right)}
+\newcommand{\braket}[1]{\left\langle #1 \right\rangle}
 
 \title{Chapter 1 Problems}
 \author{William Arnold}
@@ -140,22 +147,33 @@ For the distribution of ages in the example in Section 1.3.1
       \centerline{\includegraphics[width=6in]{1-5c.png}}
 
       The probability $x$ is greater than $\sqrt{\frac12}$ is
-      \[\int_{0.5}^\infty e^{-2x}dx = [-\frac12e^{-2x}]_{(1/\sqrt{2})}^{\infty} = \frac1{2e^{\sqrt2}} \approx 0.12156 \] 
+      \[\int_{0.5}^\infty e^{-2x}dx = \left[ -\frac12e^{-2x} \right]_{(1/\sqrt{2})}^{\infty} = \frac1{2e^{\sqrt2}} \approx 0.12156 \] 
       And the same value is taken for the probability than $x$ is less than $\sqrt{\frac12}$ by symmetry.
       Thus the probability that $x \notin [\braket{x} - \sigma, \braket{x} + \sigma]$ is $\frac1e^{\sqrt{2}} \approx 0.24312$.
   \end{enumerate}
 
+
+\section{Problem 1.7}
+Calculate $\frac{d\braket{p}}{dt}$. This should equal $\braket{-\frac{\partial V}{\partial x}}$.
+\begin{align*}
+  \frac{d\braket{p}}{dt} &= -i\hbar \intinf \paren{\ddt{\Psi^*} \ddx{\Psi} + \Psi^* \frac{\partial^2 \Psi}{\partial t \partial x}}dx
+\end{align*}
+First simplifying the second term in the integral we find
+\begin{align*}
+  \intinf \Psi^* \frac{\partial^2 \Psi}{\partial t \partial x} &= \bracket{\Psi^* \ddt\Psi}^{\infty}_{-\infty} - \intinf \ddx{\Psi^*} \ddt{\Psi} dx \\
+                                                               &= \intinf \ddx{\Psi^*} \ddt{\Psi} dx
+\end{align*}
+Thus
+\begin{align*}
+  \frac{d\braket{p}}{dt} &= \intinf \bracket{\paren{i\hbar \ddt{\Psi}}^* \ddx{\Psi} + \ddx{\Psi^*}\paren{i\hbar\ddt{\Psi}}}dx \\
+                         &= \intinf \bracket{\paren{-\frac{\hbar^2}{2m} \dddx{\Psi} + V \Psi}^*\ddx{\Psi} + \ddx{\Psi^*} \paren{-\frac{\hbar^2}{2m} \dddx{\Psi} + V \Psi}}dx \\
+                         &= \intinf \bracket{-\frac{\hbar^2}{2m} \paren{\dddx{\Psi^*} \ddx\Psi + \ddx{\Psi^*} \dddx\Psi} + V \Psi^* \ddx\Psi + \ddx{\Psi^*} V \Psi}dx \\
+                         &= \intinf \bracket{-\frac{\hbar^2}{2m} \ddx{} \paren{\ddx{\Psi^*} \ddx{\Psi}} + V \ddx{|\Psi|^2}}dx \text{\; (using the product rule) } \\
+                         &= \frac{-\hbar^2}{2m}\bracket{\ddx{\Psi^*}\ddx\Psi}^\infty_{-\infty} + \intinf V \ddx{|\Psi|^2}dx \\
+                         &= \intinf V \ddx{|\Psi|^2}dx \text{\; (since $\Psi$ and its derivatives vanish at infinity)}\\
+                         &= \bracket{V|\Psi|^2}^\infty_{-\infty} - \intinf \ddx{V}|\Psi|^2 dx \text{\; (using integration by parts)} \\
+                         &= \braket{-\ddx{V}}
+\end{align*}
+
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
 
