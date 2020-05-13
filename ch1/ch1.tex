@@ -175,5 +175,24 @@ Thus
                          &= \braket{-\ddx{V}}
 \end{align*}
 
+\section{Problem 1.9}
+A particle of mass $m$ has the wave function
+\[ \Psi(x,t) = Ae^{-a\bracket{(mx^2/\hbar) + it}} \]
+
+\begin{enumerate}[label=(\alph*)]
+  \item Find A.
+    \begin{align*}
+      \intinf |\Psi(x,t)|^2 &= \intinf |Ae^{-a\bracket{(mx^2/\hbar)|^2 + it}}dx \\
+                            &=  A^2\intinf |e^{-amx^2/\hbar}|^2 |e^{-ait}|^2 dx \\
+                            &= 2A^2 \intzinf e^{-2amx^2/\hbar}dx \\
+                            &= 2A^2 \intzinf e^{-x^2/k^2}dx \text{ for } k = \sqrt{\frac\hbar{2am}} \\
+                            &= 2A^2 \sqrt{\pi} \frac{k}{2} \\
+                            &= A^2 \sqrt{\frac{\pi\hbar}{2am}} = 1
+    \end{align*}
+    Thus we have $A = \paren{\frac{\pi\hbar}{2am}}^{\frac14}$.
+  \item For what potential energy function, $V(x)$, is this a solution to the Schroedinger Equation?
+
+\end{enumerate}
+
 \end{document}
 
