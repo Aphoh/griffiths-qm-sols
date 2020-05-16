@@ -182,7 +182,7 @@ A particle of mass $m$ has the wave function
 \begin{enumerate}[label=(\alph*)]
   \item Find A.
     \begin{align*}
-      \intinf |\Psi(x,t)|^2 &= \intinf |Ae^{-a\bracket{(mx^2/\hbar)|^2 + it}}dx \\
+      \intinf |\Psi(x,t)|^2 &= \intinf |Ae^{-a\bracket{(mx^2/\hbar) + it}}|^2 dx \\
                             &=  A^2\intinf |e^{-amx^2/\hbar}|^2 |e^{-ait}|^2 dx \\
                             &= 2A^2 \intzinf e^{-2amx^2/\hbar}dx \\
                             &= 2A^2 \intzinf e^{-x^2/k^2}dx \text{ for } k = \sqrt{\frac\hbar{2am}} \\
@@ -191,7 +191,50 @@ A particle of mass $m$ has the wave function
     \end{align*}
     Thus we have $A = \paren{\frac{\pi\hbar}{2am}}^{\frac14}$.
   \item For what potential energy function, $V(x)$, is this a solution to the Schroedinger Equation?
+    
+    First we compute \(\ddt{\Psi},\dddx{\Psi}\):
+    \begin{align*}
+      \ddt{\Psi}  &= Ae^{-amx^2/\hbar}\paren{-aie^{-ait}} = (-ai)\Psi \\
+      \dddx{\Psi} &= Ae^{-ait}\frac{\partial^2}{\partial t^2} \paren{e^{-amx^2/\hbar}} \\
+                  &= Ae^{-ait} \bracket{ \paren{\frac{-2amx}{\hbar}}^2 - \frac{2am}{\hbar}} e^{-amx^2/\hbar}  \\
+                  &= \bracket{\paren{\frac{2amx}{\hbar}}^2 - \frac{2am}{\hbar}} \Psi
+    \end{align*}
+    Plugging into the Schroedinger Equation we get
+    \begin{align*}
+        i\hbar\ddt{\Psi} &= -\frac{\hbar^2}{2m}\dddx{\Psi} + V \Psi \\
+        i\hbar(-ai){\Psi} &= -\frac{\hbar^2}{2m}\bracket{\paren{\frac{2amx}{\hbar}}^2 -  \frac{2am}{\hbar}}\Psi + V \Psi \\
+                  a\hbar &= -2ma^2x^2 + a\hbar + V \\
+                  V &= 2ma^2x^2
+    \end{align*}
+    Graphing this we see that the potential is greatest the further away from the likely regions \(x=0\) and increases quadtratically, proportional to \(a\).
+    \centerline{\includegraphics[height=2in]{1-9b.png}}
 
+  \item Calculate the expectation values of \(x, x^2, p,\) and \(p^2\).
+    \[|\Psi|^2 = A^2e^{-2amx^2/\hbar}\]
+    This is a gaussian distribution with $\braket{x} = 0$, $\sigma^2 = \hbar / (4am)$ so 
+    \[\braket{x^2} = \sigma^2 + \braket{x}^2 = \hbar / (4am)\]
+    For \(\braket{p}\), 
+    \begin{align*}
+      \braket{p} &= -i \hbar \intinf \Psi^*\ddx{\Psi} dx \\
+                 &= -i \hbar \frac{-2am}{\hbar} \intinf x \Psi^* \Psi dx \\
+                 &= 0 \text{ since } \braket{x} = 0
+    \end{align*}
+    For \(\braket{p^2}\),
+    \begin{align*}
+      \braket{p^2} &= \intinf \Psi^* \bracket{\paren{-i\hbar\ddx{}}^2} \Psi dx \\
+                   &= \intinf \Psi^* (-\hbar^2) \dddx{} \Psi dx \\
+       \dddx{\Psi} &= \frac{-2am}{\hbar}\Psi + \paren{\frac{2amx}{\hbar}}^2 \Psi \\
+       \braket{p^2} &= \intinf 2am\hbar \Psi^* \Psi dx + \intinf -4a^2m^2x^2 \Psi^* \Psi dx \\
+                    &= 2am\hbar - 4a^2m^2 \braket{x^2} = 2am\hbar - am\hbar \\
+                    &= am\hbar
+    \end{align*}
+  \item Find $\sigma_p$ and $\sigma_x$. Is their product consistent with the uncertainty principle?
+    \begin{align*}
+      \sigma_p^2 &= am\hbar \\
+      \sigma_x^2 &= \hbar/(4am) \\
+      \sigma_x \sigma_p &= \sqrt{am\hbar \frac{\hbar}{4am}} = \hbar / 2
+    \end{align*}
+    Which is the lower bound of the uncertainty inequality! It appears then that Gaussian-like wave functions are those which minimize the uncertainty principle.
 \end{enumerate}
 
 \end{document}
