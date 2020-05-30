@@ -22,7 +22,7 @@
 \begin{document}
 \maketitle 
 
-\section{Problem 2.1}
+\section*{Problem 2.1}
   Prove the following theorems:
   \begin{problem}
     \item For normalizable solutions, the separation constant $E$ must be \textit{real}
@@ -80,7 +80,7 @@
      Now, since any linear combination of solutions is also a solution, we can use the even combination $\psi(x) + \psi(-x)$ or the odd combination $\psi(x) - \psi(-x)$ in order to get an even or odd solution to the equation.
   \end{problem}
 
-\section{Problem 2.2}
+\section*{Problem 2.2}
   Prove that $E$ must exceed the minimum value of $V(x)$ at some point. 
 
   \noindent Assume $E < V(x)$ for all $x$. Then we can solve for $\dddx{\psi}$ to see that
@@ -91,7 +91,7 @@
   Symmetrically if $\psi$ takes on some negative value, it will grow unboundedly negative in the negative direction. 
   Hence, since $\psi \neq 0$ we have a contradiction and $E > V(x)$ for some $x$.
 
-\section{Problem 2.3}
+\section*{Problem 2.3}
 Calculate $\braket{x}, \braket{x^2}, \braket{p}, \braket{p^2}, \sigma_x$, and $\sigma_p$ for the $n$-th stationary state of the infinite square well.
 Check that the uncertainty principle is satisfied.
 Which state comes closest to the uncertainty limit?
@@ -134,6 +134,60 @@ We can use this to check the uncertainty principle:
                     &> \hbar / 2
 \end{align*}
 This quantity is minimized for $n = 1$
+
+\section*{Problem 2.5}
+A particle in the infinite square well has its initial wave function an even mixture of the first two stationary states:
+$$\Psi(x, 0) = A[\psi_1(x) + \psi_2(x)]$$
+
+\begin{problem}
+  \item Normalize $\Psi(x, 0)$:
+    \begin{align*}
+      1 = \intinf |\Psi(x, 0)|^2 dx &= \intinf A^2(\psi_1^* \psi_1 + \psi_1^*\psi_2 + \psi_2^* \psi_1 + \psi_2^* \psi_2)dx \\
+                                    &= A^2 \paren{\intinf |\psi_1|^2 dx + \intinf |\psi_2|^2 dx} \\
+                                    &= 2A^2 \\
+    \end{align*}
+    Thus $A = 1/\sqrt{2}$.
+  \item Find $\Psi(x,t), |\Psi(x,t)|^2$. Express the latter as a sinusoidal function of time, as in example 2.1. Let $\omega = \pi^2\hbar / 2ma^2$.
+      
+    We have that $c_1, c_2 = 1/\sqrt{2}$. Thus we have
+    $$\Psi(x, t) = \frac{1}{\sqrt{a}}\bracket{\sin\paren{\frac{\pi x}{a}}e^{-i\omega t} + \sin\paren{\frac{2 \pi x}{a}}e^{-4i\omega t}}$$
+    See the attached mathematica notebook in which we compute that
+    $$|\Psi(x, t)|^2 = \frac{\sin ^2\left(\frac{\pi  x}{a}\right) \left(4 \cos \left(\frac{\pi  x}{a}\right) \cos (3 t \omega)+2 \cos \left(\frac{2 \pi  x}{a}\right)+3\right)}{a}$$
+
+  \item Compute $\braket{x}$. Notice that it oscillates in time. What is the angular frequency of the oscillation? What is the amplitude of the oscillation?
+    
+    Using mathematica we see that
+    $$ \braket{x} = \frac{a}{2}-\frac{16 a \cos (3 t\omega)}{9 \pi ^2}$$
+    
+    The amplitude of this oscillation is $16a/9\pi^2$ and it's frequency is $3\omega$.
+
+  \item Compute $\braket{p}$.
+
+    Here we can use that $\braket{p} = m \frac{d}{dt}\braket{x}$:
+
+    \begin{align*}
+      \braket{p} &= m \frac{16a\omega}{3\pi^2} \sin(3t\omega) \\
+                 &= \frac{8\hbar}{3a} \sin(3t\omega)
+    \end{align*}
+
+  \item If you measured the energy of this particle, what possible values could it's energy be and with what probabilities? Find the expectation value of $H$. How does it compare with $E_1, E_2$.
+
+    The two possible values we could get are $E_1 = \omega, E_2 = 4 \omega$. 
+    Since $c_1, c_2 = 1/\sqrt{2}$, we get either $E_1$ or $E_2$ with probability $1/2$.
+
+    \begin{align*}
+      \braket{H} &= \intinf \Psi^* \hat{H} \Psi dx \\
+                 &= \intinf \Psi^* \frac{1}{\sqrt{2}}\paren{E_1 \psi_1 + E_2 \psi_2} dx \\
+                 &= \frac{1}{2} \intinf \bracket{E_1 \psi_1^* \psi_1 + E_1 \psi_2^* \psi_1 + E_2 \psi_1^* \psi_2 + E_2 \psi_2^* \psi_2}dx \\
+                 &= \frac{1}{2} \paren{E_1\intinf \psi_1^* \psi_1 dx + E_2 \intinf \psi_2^* \psi_2 dx} \\
+                 &= \frac{E_1 + E_2}{2}
+    \end{align*}
+
+    Which, as we would expect is $\braket{E}$.
+
+\end{problem}
+
+\section*{Problem 2.7}
 
 \end{document}
 
