@@ -188,6 +188,30 @@ $$\Psi(x, 0) = A[\psi_1(x) + \psi_2(x)]$$
 \end{problem}
 
 \section*{Problem 2.7}
+A particle in the infinite square well has the initial wave function 
+$$\Psi(x, 0) = \begin{cases}
+  Ax & 0 \leq x \leq a/2 \\
+  A(a-x) & a/2 \leq x \leq a 
+\end{cases}$$
+
+\begin{problem}
+\item Sketch $\Psi(x, 0)$ and determine $A$.
+
+  \centerline{\includegraphics[width=2in]{2-7a.jpg}}
+
+  \begin{align*}
+    \intinf |\Psi(x, 0)|^2 &= A^2\int_0^{a/2} x^2 dx + A^2 \int_{a/2}^a (a-x)^2 dx \\ 
+                           &= A^2 \paren{\bracket{x^3/3}_0^{a/2} + \bracket{-(a-x)^3/3}_{a/2}^a}A \\
+                           &= A^2 \paren{\frac{a^3}{24} + \frac{a^3}{24}} \\
+                           &= \frac{A^2 a^3}{12} = 1
+  \end{align*}
+  Thus $A = \sqrt{12/a^3}$
+
+\item Find $\Psi(x, t)$.
+
+  This amounts to determining the $c_n$.
+
+\end{problem}
 
 \end{document}
 
