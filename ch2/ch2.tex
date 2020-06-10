@@ -188,6 +188,7 @@ $$\Psi(x, 0) = A[\psi_1(x) + \psi_2(x)]$$
 \end{problem}
 
 \section*{Problem 2.7}
+
 A particle in the infinite square well has the initial wave function 
 $$\Psi(x, 0) = \begin{cases}
   Ax & 0 \leq x \leq a/2 \\
@@ -210,8 +211,50 @@ $$\Psi(x, 0) = \begin{cases}
 \item Find $\Psi(x, t)$.
 
   This amounts to determining the $c_n$.
+  Using mathematica we see that 
+  $$c_n = \frac{4 \sqrt{6} \sin \left(\frac{\pi  n}{2}\right)}{\pi ^2 n^2}$$
+  Thus we have 
+  $$ \Psi(x, t) = \sum_{n=0}^\infty \frac{4 \sqrt{6} \sin \left(\frac{\pi  n}{2}\right)}{\pi ^2 n^2} \sqrt{\frac{2}{a}} \sin\paren{\frac{n \pi}{a} x} e^{-i t n^2 \pi^2 \hbar / 2 m a^2} $$
+
+\item What is the probability we measure the energy $E_1$?
+
+  This is $$|c_1|^2 = \frac{96}{\pi^4}$$
+
+\item Find the expectation value of the energy:
+
+  \begin{align*}
+    \braket{H} &= \sum_{n=1}^\infty |c_n|^2 E_n = \sum_{n=1}^\infty \frac{96 \sin^2 \left(\frac{\pi  n}{2}\right)}{\pi ^4 n^4} \frac{n^2 \pi^2 \hbar^2}{2 m a^2} \\
+               &= \frac{48 \hbar^2}{\pi^2 ma^2} \sum_{n=1}^\infty \frac{\sin^2(\pi n / 2)}{n^2} \\
+               &= \frac{48 \hbar^2}{\pi^2 ma^2} \paren{1 - \frac1{3^2} + \frac1{5^2} - \frac1{7^2} + ..} \\
+               &= \frac{48 \hbar^2}{\pi^2 ma^2} \frac{\pi^2}{8} \\
+               &= \frac{6 \hbar^2}{ma^2}
+  \end{align*}
 
 \end{problem}
 
+
+
+\section*{Problem 2.10}
+
+  \begin{problem}
+    \item Construct $\psi_2(x)$
+      
+      Using mathematica we get that 
+      $$ \psi_2(x) = \frac{\sqrt[4]{m \omega } e^{-\frac{m x^2 \omega }{2 \hbar }} \left(2 m x^2 \omega -\hbar \right)}{\sqrt{2} \sqrt[4]{\pi } \hbar ^{5/4}} $$
+
+    \item Sketch $\psi_0, \psi_1, \psi_2$:
+
+      \centerline{\includegraphics[height=2.5in]{2-10b-psis.png}}
+
+    \item Check orthogonality (see mathematica)
+  \end{problem}
+
+\section*{Problem 2.11}
+
+  \begin{problem}
+    \item Compute $\braket{x}, \braket{p}, \braket{x^2}, \braket{p^2}$ for $\psi_0, \psi_1$
+
+
+  \end{problem}
 \end{document}
 
